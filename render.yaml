@@ -5,11 +5,7 @@ services:
     region: oregon
     plan: free
 
-    buildCommand: |
-      pip install -r backend/requirements.txt
-      curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-      apt-get install -y nodejs
-      cd frontend && npm install && npm run build
+    buildCommand: pip install -r backend/requirements.txt && cd frontend && npm install && npm run build
 
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
 
@@ -18,3 +14,4 @@ services:
         value: 3.12.0
       - key: ENVIRONMENT
         value: production
+
